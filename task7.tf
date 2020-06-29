@@ -51,7 +51,7 @@ data "aws_route53_zone" "rebrain" {
 
 resource "aws_route53_record" "task7" {
   zone_id = data.aws_route53_zone.rebrain.zone_id
-  name    = "ag4544_at_yandex_ru.devops.rebrain.srwx.net"
+  name    = "ag4544_at_yandex_ru.${data.aws_route53_zone.rebrain.name}"
   type    = "A"
   ttl     = "300"
   records = [hcloud_server.terraform_task7.ipv4_address]
