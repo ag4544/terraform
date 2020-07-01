@@ -27,10 +27,10 @@ resource "hcloud_ssh_key" "default" {
   public_key = file("/home/ag4544/terraform_tasks/terraform_task2/tf_rsa.pub")
 }
 
-resource "hcloud_server" "terraform_task10" {
+resource "hcloud_server" "terraform_task9" {
   count       = var.hcloud_server_count
   image       = "debian-10"
-  name        = "ag4544-terraform-task10-${count.index + 1}"
+  name        = "ag4544-terraform-task9-${count.index + 1}"
   location    = "hel1"
   server_type = "cx11"
   ssh_keys = [
@@ -66,17 +66,17 @@ data "aws_route53_zone" "rebrain" {
   private_zone = false
 }
 
-resource "aws_route53_record" "task10" {
+resource "aws_route53_record" "task9" {
   count   = var.hcloud_server_count
   zone_id = data.aws_route53_zone.rebrain.zone_id
   name    = "ag4544_at_yandex_ru-${count.index + 1}.${data.aws_route53_zone.rebrain.name}"
   type    = "A"
   ttl     = "300"
-  records = [hcloud_server.terraform_task10[count.index].ipv4_address]
+  records = [hcloud_server.terraform_task9[count.index].ipv4_address]
 }
 
 output "passes_address" {
   value = map(
-    "address", aws_route53_record.task10.*.name,
+    "address", aws_route53_record.task9.*.name,
   )
 }
