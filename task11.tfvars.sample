@@ -1,0 +1,4 @@
+hcloud_token   = ""
+aws_access_key = ""
+aws_secret_key = ""
+devs           = ["ag4544-lb", "ag4544-app1", "ag4544-app2", "ag4544-db1", "ag4544-db2", "ag4544-db3", "ag4544-proxy"]
